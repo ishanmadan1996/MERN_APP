@@ -1,4 +1,9 @@
-import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE } from '../actions/types';
+import {
+  GET_PROFILE,
+  PROFILE_ERROR,
+  CLEAR_PROFILE,
+  UPDATE_PROFILE,
+} from '../actions/types';
 
 const initialState = {
   profile: null, // all our profile data, after login. Also other users viewed profile,
@@ -12,6 +17,7 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case UPDATE_PROFILE: // for adding the education section within the profile.
     case GET_PROFILE:
       return {
         ...state, // copy the initial state
