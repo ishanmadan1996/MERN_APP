@@ -1,13 +1,16 @@
 import React, { useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { getCurrentProfile } from '../../actions/profile';
+import { getCurrentProfile, deleteAccount } from '../../actions/profile';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import DashboardActions from './DashboardActions';
+import Experience from './Experience';
+import Education from './Education';
 import { Link } from 'react-router-dom';
 
 export const Dashboard = ({
   getCurrentProfile,
+  deleteAccount,
   auth: { user },
   profile: { profile, loading },
 }) => {
@@ -25,6 +28,13 @@ export const Dashboard = ({
       {profile !== null ? (
         <Fragment>
           <DashboardActions />
+          <Experience experience={profile.experience} />
+          <Education education={profile.education} />
+          <div className='my-2'>
+            <button className='btn btn-danger' onClick={() => deleteAccount()}>
+              <i className='fas fa-user-minus'> Delete My Account</i>
+            </button>
+          </div>
         </Fragment>
       ) : (
         <Fragment>
@@ -49,5 +59,8 @@ Dashboard.propTypes = {
 const mapStateToProps = (state) => ({
   auth: state.auth,
   profile: state.profile,
+  deleteAccount: PropTypes.func.isRequired,
 });
-export default connect(mapStateToProps, { getCurrentProfile })(Dashboard); // Use connect to connnect component to redux
+export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
+  Dashboard
+); // Use connect to connnect component to redux
