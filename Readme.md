@@ -61,7 +61,6 @@ Check in browser on [http://localhost:5000/](http://localhost:5000/)
 
 ### Author
 
-Brad Traversy
 [Ishan Madan](https://github.com/ishanmadan1996)
 
 ### Version
