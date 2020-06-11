@@ -10,20 +10,22 @@ npm install
 
 ## Run App
 
-```
 # Run in dev mode
+
 npm run dev
 
 ## Built With
 
-* [NodeJs](https://nodejs.org/en/docs/)
-* [Express](https://expressjs.com/)
-* [MongoDB](https://www.mongodb.com/)
-* [REACT](https://reactjs.org/)
-* [Redux](https://react-redux.js.org/)
-
+- [NodeJs](https://nodejs.org/en/docs/)
+- [Express](https://expressjs.com/)
+- [MongoDB](https://www.mongodb.com/)
+- [REACT](https://reactjs.org/)
+- [Redux](https://react-redux.js.org/)
 
 ## Authors
 
-* **Ishan Madan** - (https://github.com/ishanmadan1996)
+- **Ishan Madan** - (https://github.com/ishanmadan1996)
+
+```
+
 ```
