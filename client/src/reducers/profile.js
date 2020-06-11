@@ -9,10 +9,10 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  profile: null, // all our profile data, after login. Also other users viewed profile,
-  profiles: [], // list profiles of developers
-  repos: [], // users github repose
-  loading: true, //when we make an API request, this is set to false, meaning we have finished loading
+  profile: null,
+  profiles: [],
+  repos: [],
+  loading: true,
   error: {},
 };
 
@@ -20,11 +20,11 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case UPDATE_PROFILE: // for adding the education section within the profile.
     case GET_PROFILE:
+    case UPDATE_PROFILE:
       return {
-        ...state, // copy the initial state
-        profile: payload, // includes whole profile, which we get from the API request made by the action in profile.js
+        ...state,
+        profile: payload,
         loading: false,
       };
     case GET_PROFILES:
@@ -45,7 +45,6 @@ export default function (state = initialState, action) {
         ...state,
         profile: null,
         repos: [],
-        loading: false,
       };
     case GET_REPOS:
       return {
