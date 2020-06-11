@@ -2,15 +2,14 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
-const checkObjectId = require('../../middleware/checkObjectId');
 
 const Post = require('../../models/Post');
-const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const checkObjectId = require('../../middleware/checkObjectId');
 
-// @route   POST api/posts
-// @desc    Create a post
-// @access  Private
+// @route    POST api/posts
+// @desc     Create a post
+// @access   Private
 router.post(
   '/',
   [auth, [check('text', 'Text is required').not().isEmpty()]],
@@ -23,14 +22,15 @@ router.post(
     try {
       const user = await User.findById(req.user.id).select('-password');
 
-      const newPost = Post({
+      const newPost = new Post({
         text: req.body.text,
         name: user.name,
         avatar: user.avatar,
-        user: req.user.id,
+        user: req.user.id
       });
 
       const post = await newPost.save();
+
       res.json(post);
     } catch (err) {
       console.error(err.message);
@@ -146,7 +146,7 @@ router.post(
   [
     auth,
     checkObjectId('id'),
-    [check('text', 'Text is required').not().isEmpty()],
+    [check('text', 'Text is required').not().isEmpty()]
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -162,7 +162,7 @@ router.post(
         text: req.body.text,
         name: user.name,
         avatar: user.avatar,
-        user: req.user.id,
+        user: req.user.id
       };
 
       post.comments.unshift(newComment);

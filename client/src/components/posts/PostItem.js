@@ -11,7 +11,7 @@ const PostItem = ({
   deletePost,
   auth,
   post: { _id, text, name, avatar, user, likes, comments, date },
-  showActions,
+  showActions
 }) => (
   <div className='post bg-white p-1 my-1'>
     <div>
@@ -65,7 +65,7 @@ const PostItem = ({
 );
 
 PostItem.defaultProps = {
-  showActions: true,
+  showActions: true
 };
 
 PostItem.propTypes = {
@@ -74,13 +74,14 @@ PostItem.propTypes = {
   addLike: PropTypes.func.isRequired,
   removeLike: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
-  showActions: PropTypes.bool,
+  showActions: PropTypes.bool
 };
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
+const mapStateToProps = state => ({
+  auth: state.auth
 });
 
-export default connect(mapStateToProps, { addLike, removeLike, deletePost })(
-  PostItem
-);
+export default connect(
+  mapStateToProps,
+  { addLike, removeLike, deletePost }
+)(PostItem);

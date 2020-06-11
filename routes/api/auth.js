@@ -1,29 +1,29 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../../middleware/auth');
-const User = require('../../models/User')
-const { check, validationResult } = require('express-validator');
-const config = require('config')
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const auth = require('../../middleware/auth');
+const jwt = require('jsonwebtoken');
+const config = require('config');
+const { check, validationResult } = require('express-validator');
 
+const User = require('../../models/User');
 
-// @route   GET api/auth, Protected Route
-// @desc    Auth Route To Check If User is Logged In
-// @access  Public
+// @route    GET api/auth
+// @desc     Get user by token
+// @access   Private
 router.get('/', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
     res.json(user);
   } catch (err) {
-    console.error(err.nessage)
-    res.status(500).send("Server Error")
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
 });
 
-// @route   POST api/auth
-// @desc    Authenticate User and Get Token
-// @access  Public
+// @route    POST api/auth
+// @desc     Authenticate user & get token
+// @access   Public
 router.post(
   '/',
   [
@@ -76,4 +76,5 @@ router.post(
     }
   }
 );
+
 module.exports = router;
